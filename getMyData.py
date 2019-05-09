@@ -10,7 +10,6 @@ import csv
 def downdata(num_pages):
     p = 1
     draws = re.compile(r'[<td>](\d{6})[</td>]')
-    # <td>11/7/2016</td>
     dates = re.compile(r'[<td>](\d{1,2}/\d{1,2}/\d{4})[</td>]')
     # numbers = re.compile(r'>([(\d{1,2}+,?\s?)+]+)</td>')
     numbers = re.compile(r'>(\S[\d{1,2},?\s?]+)</td></tr>')
@@ -20,7 +19,6 @@ def downdata(num_pages):
         url = 'http://www.tostoixima.gr/games.aspx?gid=1&pgid=4&pg=' + str(p)
         source_code = requests.get(url)
         plaintext = source_code.text
-        #f = open('testit.txt', 'r')
         plaintext = source_code.text
 
         for ite in re.findall(draws, plaintext):
@@ -36,9 +34,6 @@ def downdata(num_pages):
             fwd.write('\n')
 
         p += 1
-        #f.close()
-
-#def rowCheck():
 
 
 ans = input("press 1 to download data, 2 to analyze: ")
